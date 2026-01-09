@@ -1,19 +1,39 @@
-# SendEmails
-Envio de emails em massa.
+# Email Sender for New Hires (Python Automation)
 
+## Overview
 
+This script automates the process of sending personalized emails to new hires using data stored in an Excel file (`NewHireEmail.xlsx`).  
+Each recipient receives tailored information such as credentials or onboarding details.
 
-for user, newHires in newHire.iterrows():
-    msg = MIMEMultipart()
-    msg['Subject'] = 'Login SAP'
-    message = f"Hello {newHires['email']}, this is your SAP UserID and E-mail \n{newHires['infos']}"
-    msg['From'] = sender
-    msg['To'] = newHires['email']
-    msg.attach(MIMEText(message, 'plain'))
+Emails are sent via Gmail SMTP using an App Password for secure authentication.
 
+---
 
-    server = smtplib.SMTP('smtp.gmail.com', port=587)
-    server.starttls()
-    server.login(sender, appPassword)
-    server.sendmail(msg['From'], msg['To'], msg.as_string())
-    server.quit()
+## Features
+
+- Reads new hire info from Excel
+- Sends personalized emails automatically
+- Uses Gmail SMTP with secure authentication
+- Supports individual iteration per user
+- Simple and configurable
+
+---
+
+## Requirements
+
+### Python Version
+- Python 3.8+
+
+### Dependencies
+
+| Package | Purpose |
+|---------|---------|
+| pandas | Reading Excel file |
+| openpyxl | Excel engine |
+| smtplib | SMTP handling |
+| email.mime | Email formatting |
+
+Install dependencies:
+
+```bash
+pip install pandas openpyxl
